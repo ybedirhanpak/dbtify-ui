@@ -4,12 +4,12 @@ import ProfileSongListContainer from "../../containers/profileSongListContainer"
 import ProfileAlbumListContainer from "../../containers/profileAlbumListContainer";
 import ArtistHeaderContainer from "../../containers/artistHeaderContainer";
 
-const ArtistPage = () => {
+const ArtistProfilePage = () => {
   return (
     <div className="page">
       <div className="container-fluid">
         <ArtistHeaderContainer />
-        <Link to="/artist/create">
+        <Link to="/artistProfile/create">
           <button className="btn app-btn">Create</button>
         </Link>
         <ProfileAlbumListContainer />
@@ -19,4 +19,4 @@ const ArtistPage = () => {
   );
 };
 
-export default ArtistPage;
+export default ArtistProfilePage;

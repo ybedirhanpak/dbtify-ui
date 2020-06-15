@@ -6,14 +6,7 @@ const ListItem = (props) => {
   const { id, title, likes, album, genre, albumid } = element;
   return (
     <div className="col-md-3 card-fluid-sm">
-      <h5 style={{ fontWeight: "bold" }}>
-        <Link
-          style={{ color: "black", textDecoration: "none" }}
-          to={`/song/${id}`}
-        >
-          {title}
-        </Link>
-      </h5>
+      <h5 style={{ fontWeight: "bold" }}>{title}</h5>
 
       <span className="badge badge-success" style={{ fontSize: "1rem" }}>
         ♥ {likes}
