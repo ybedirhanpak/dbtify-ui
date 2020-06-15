@@ -30,11 +30,12 @@ const App = () => {
         <ArtistRoute path="/artist" component={ArtistPage} />
         <ListenerRoute path="/listener" component={ListenerPage} />
         <ListenerRoute path="/search/:key" component={SearchPage} />
+        <ListenerRoute path="/search/" component={SearchPage} />
         <ListenerRoute path="/genre/:genreName" component={GenrePage} />
         <Route path="/logout">
           <LogoutPage></LogoutPage>
         </Route>
-        <Route path="/" exact>
+        <Route path="/">
           <HomePage></HomePage>
         </Route>
       </Switch>

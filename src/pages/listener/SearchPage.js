@@ -17,7 +17,8 @@ const SearchPage = (props) => {
   const alert = useAlert();
   useEffect(() => {
     if (userListener) {
-      fetchSongSearchList(key, alert);
+      const keyword = key ?? "";
+      fetchSongSearchList(keyword, alert);
     } else {
       alert.error("Please log in as listener.");
     }
