@@ -30,16 +30,18 @@ export const actionCreators = {};
 
 /* Request Creators */
 
-export const requestArtistRegister = (artist) => {
-  return (dispatch) => {
-    Post("/artist/register", artist).then((response) => {
+export const requestArtistRegister = (artist, alert) => {
+  return async (dispatch) => {
+    return Post("/artist/register", artist).then((response) => {
       if (Success(response)) {
         response.json().then((data) => {
           dispatch(artistRegisterSuccess(data.message));
+          alert.info(data.message);
         });
       } else {
         response.json().then((data) => {
           dispatch(artistRegisterFail(data.message));
+          alert.error(data.message);
         });
       }
     });

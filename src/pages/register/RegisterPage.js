@@ -1,5 +1,6 @@
 import React from "react";
 import RegisterForm from "../../components/register-form";
+import ArtistRegisterForm from "../../containers/artistRegisterForm";
 
 const RegisterPage = () => {
   return (
@@ -10,7 +11,7 @@ const RegisterPage = () => {
             <RegisterForm></RegisterForm>
           </div>
           <div className="col-md-6">
-            <RegisterForm></RegisterForm>
+            <ArtistRegisterForm />
           </div>
         </div>
       </div>

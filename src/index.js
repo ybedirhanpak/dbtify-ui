@@ -10,13 +10,25 @@ import "./index.css";
 
 import configureStore from "./state";
 
+import { transitions, positions, Provider as AlertProvider } from "react-alert";
+import AlertTemplate from "react-alert-template-basic";
+
+// optional configuration for alert
+const alertOptions = {
+  position: positions.BOTTOM_RIGHT,
+  timeout: 3000,
+  transition: transitions.FADE,
+};
+
 const { store, persistor } = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <App />
+        <AlertProvider template={AlertTemplate} {...alertOptions}>
+          <App />
+        </AlertProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>,

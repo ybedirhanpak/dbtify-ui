@@ -6,7 +6,7 @@ const RegisterForm = (props) => {
       <form>
         <h3>Register As Listener</h3>
         <div className="form-group">
-          <label for="exampleInputEmail1">Username</label>
+          <label>Username</label>
           <input
             type="text"
             className="form-control"
@@ -14,7 +14,7 @@ const RegisterForm = (props) => {
           />
         </div>
         <div className="form-group">
-          <label for="exampleInputPassword1">E-mail</label>
+          <label>E-mail</label>
           <input
             type="text"
             className="form-control"
