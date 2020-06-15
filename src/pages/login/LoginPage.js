@@ -1,6 +1,7 @@
 import React from "react";
 import "./login.css";
-import LoginForm from "../../components/login-form";
+import ListenerLoginForm from "../../containers/listenerLoginForm";
+import ArtistLoginForm from "../../containers/artistLoginForm";
 
 const LoginPage = () => {
   return (
@@ -8,10 +9,10 @@ const LoginPage = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-6">
-            <LoginForm></LoginForm>
+            <ListenerLoginForm />
           </div>
           <div className="col-md-6">
-            <LoginForm></LoginForm>
+            <ArtistLoginForm />
           </div>
         </div>
       </div>
