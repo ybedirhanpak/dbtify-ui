@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 import AlbumList from "../components/album-list";
 import { requestFetchArtist } from "../state/actions/artistActions";
 import { useEffect } from "react";
+import { useAlert } from "react-alert";
 
 const ProfileAlbumListContainer = (props) => {
   const { userArtist, fetchCurrentArtist, albumList } = props;
+  const alert = useAlert();
   useEffect(() => {
     if (userArtist) {
       fetchCurrentArtist(userArtist.id);

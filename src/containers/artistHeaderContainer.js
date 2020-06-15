@@ -4,7 +4,9 @@ import ArtistHeader from "../components/artist-header";
 
 const ArtistHeaderContainer = (props) => {
   const { userArtist } = props;
-  const title = userArtist.name + " " + userArtist.surname;
+  const title = userArtist
+    ? userArtist.name + " " + userArtist.surname
+    : " guest";
   return <ArtistHeader title={title} />;
 };
 

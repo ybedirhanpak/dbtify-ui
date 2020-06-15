@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "./components/navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ArtistRoute from "./components/artist-route";
 
 //Pages
 import HomePage from "./pages/home/HomePage";
@@ -20,12 +21,8 @@ const App = () => {
         <Route path="/register">
           <RegisterPage></RegisterPage>
         </Route>
-        <Route path="/artist/create">
-          <CreatePage></CreatePage>
-        </Route>
-        <Route path="/artist">
-          <ArtistPage></ArtistPage>
-        </Route>
+        <ArtistRoute path="/artist/create" component={CreatePage} />
+        <ArtistRoute path="/artist" component={ArtistPage} />
         <Route path="/">
           <HomePage></HomePage>
         </Route>
