@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useAlert } from "react-alert";
 
 const ProfileAlbumListContainer = (props) => {
-  const { userArtist, fetchCurrentArtist, albumList } = props;
+  const { userArtist, currentArtist, fetchCurrentArtist } = props;
   const alert = useAlert();
   useEffect(() => {
     if (userArtist) {
@@ -14,15 +14,19 @@ const ProfileAlbumListContainer = (props) => {
     } else {
       alert.error("Please log in as artist.");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userArtist]);
-
-  return <AlbumList data={albumList} />;
+  if (currentArtist) {
+    return <AlbumList data={currentArtist.albums} />;
+  } else {
+    return <div>Loading</div>;
+  }
 };
 
 const mapStateToProps = (state) => {
   return {
     userArtist: state.user.artist,
-    albumList: state.artist.current.albums,
+    currentArtist: state.artist.current,
   };
 };
 

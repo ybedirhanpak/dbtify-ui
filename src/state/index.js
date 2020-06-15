@@ -7,11 +7,13 @@ import storage from "redux-persist/lib/storage";
 // Import Reducers
 import userReducer from "./reducers/userReducer";
 import artistReducer from "./reducers/artistReducer";
+import listenerReducer from "./reducers/listenerReducer";
 
 // Combine Reducers
 const rootReducer = combineReducers({
   user: userReducer,
   artist: artistReducer,
+  listener: listenerReducer,
 });
 
 const persistConfig = {

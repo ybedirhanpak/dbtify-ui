@@ -44,21 +44,23 @@ const SelectList = (props) => {
   };
 
   const renderItems = () => {
-    const items = data.map((element, index) => {
-      const key = element.id + element.title;
-      return (
-        <ListItem
-          key={key}
-          element={element}
-          checked={
-            element.genre
-              ? isAlbumChecked(element.id)
-              : isProducerChecked(element.id)
-          }
-          onCheck={element.genre ? onAlbumCheck : onProducerCheck}
-        />
-      );
-    });
+    const items = data
+      ? data.map((element, index) => {
+          const key = element.id + element.title;
+          return (
+            <ListItem
+              key={key}
+              element={element}
+              checked={
+                element.genre
+                  ? isAlbumChecked(element.id)
+                  : isProducerChecked(element.id)
+              }
+              onCheck={element.genre ? onAlbumCheck : onProducerCheck}
+            />
+          );
+        })
+      : [];
     return items;
   };
 

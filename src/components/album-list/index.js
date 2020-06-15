@@ -5,10 +5,12 @@ const AlbumList = (props) => {
   const { data } = props;
 
   const renderItems = () => {
-    const items = data.map((element, index) => {
-      const key = element.id + element.title;
-      return <ListItem key={key} element={element} />;
-    });
+    const items = data
+      ? data.map((element, index) => {
+          const key = element.id + element.title;
+          return <ListItem key={key} element={element} />;
+        })
+      : [];
     return items;
   };
   return (
