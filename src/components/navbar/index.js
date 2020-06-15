@@ -37,6 +37,16 @@ const Navbar = () => {
               Register
             </Link>
           </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/artist">
+              Artist
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/listener">
+              Listener
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>

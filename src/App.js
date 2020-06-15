@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import RegisterPage from "./pages/register/RegisterPage";
 import LoginPage from "./pages/login/LoginPage";
+import ArtistPage from "./pages/artist/ArtistPage";
 
 const App = () => {
   return (
@@ -15,6 +16,9 @@ const App = () => {
         </Route>
         <Route path="/register">
           <RegisterPage></RegisterPage>
+        </Route>
+        <Route path="/artist">
+          <ArtistPage></ArtistPage>
         </Route>
         <Route path="/">
           <HomePage></HomePage>

@@ -23,24 +23,30 @@ const UserForm = ({ options }) => {
     <div className={"user-form " + borderClass}>
       <form>
         <h3>{header}</h3>
-        <div className="form-group">
-          <label>{value1.header}</label>
-          <input
-            type="text"
-            className={"form-control " + borderClass}
-            placeholder={"Enter " + value1.name}
-            onChange={(event) => setInput1(event.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label>{value2.header}</label>
-          <input
-            type="text"
-            className={"form-control " + borderClass}
-            placeholder={"Enter " + value2.name}
-            onChange={(event) => setInput2(event.target.value)}
-          />
-        </div>
+        {value1 && (
+          <div className="form-group">
+            <label>{value1.header}</label>
+            <input
+              type="text"
+              className={"form-control " + borderClass}
+              placeholder={"Enter " + value1.name}
+              onChange={(event) => setInput1(event.target.value)}
+            />
+          </div>
+        )}
+
+        {value2 && (
+          <div className="form-group">
+            <label>{value2.header}</label>
+            <input
+              type="text"
+              className={"form-control " + borderClass}
+              placeholder={"Enter " + value2.name}
+              onChange={(event) => setInput2(event.target.value)}
+            />
+          </div>
+        )}
+
         <button
           className={"btn btn-primary " + borderClass + " " + backgroundClass}
           onClick={(event) => onButtonClick(event)}

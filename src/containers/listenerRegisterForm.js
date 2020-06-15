@@ -40,9 +40,7 @@ const ListenerRegisterForm = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return {
-    registerMessage: state.user.message,
-  };
+  return {};
 };
 
 const mapDispatchToProps = {
