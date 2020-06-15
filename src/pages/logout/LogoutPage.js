@@ -7,7 +7,6 @@ const LogoutPage = (props) => {
   const { logout } = props;
 
   useEffect(() => {
-    debugger;
     logout();
   }, []);
 
