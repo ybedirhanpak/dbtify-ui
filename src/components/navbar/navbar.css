@@ -1,5 +1,15 @@
-.App-logo {
-  height: 20px;
+.app-logo {
+  height: 40px;
+}
+
+.app-brand {
+  color: #1db954;
+  font-size: 1.6rem;
+}
+
+.brand-wrapper {
+  display: flex;
+  align-items: center;
 }
 
 .collapsed {
@@ -7,12 +17,12 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .app-logo {
+    animation: app-logo-spin infinite 20s linear;
   }
 }
 
-@keyframes App-logo-spin {
+@keyframes app-logo-spin {
   from {
     transform: rotate(0deg);
   }

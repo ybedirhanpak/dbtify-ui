@@ -12,9 +12,9 @@ const Navbar = () => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link className="navbar-brand" to="/">
-        <img src={logo} className="App-logo" alt="logo" />
-        DBtify
+      <Link className="navbar-brand brand-wrapper" to="/">
+        <img src={logo} className="app-logo" alt="logo" />
+        <span className="app-brand">DBtify</span>
       </Link>
       <button
         className="navbar-toggler"
