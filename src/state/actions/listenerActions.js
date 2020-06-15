@@ -162,8 +162,11 @@ export const requestFetchAllListeners = (alert) => {
   };
 };
 
-export const requestFetchSongSearch = (body, alert) => {
+export const requestFetchSongSearch = (key, alert) => {
   return async (dispatch) => {
+    const body = {
+      keyword: key,
+    };
     return Post(`/song/search`, body).then((response) => {
       if (Success(response)) {
         response.json().then((data) => {

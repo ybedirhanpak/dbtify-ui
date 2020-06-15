@@ -12,6 +12,8 @@ import ArtistPage from "./pages/artist/ArtistPage";
 import CreatePage from "./pages/artist/CreatePage";
 import ListenerPage from "./pages/listener/ListenerPage";
 import LogoutPage from "./pages/logout/LogoutPage";
+import SearchPage from "./pages/listener/SearchPage";
+import GenrePage from "./pages/listener/GenrePage";
 
 const App = () => {
   return (
@@ -27,6 +29,8 @@ const App = () => {
         <ArtistRoute path="/artist/create" component={CreatePage} />
         <ArtistRoute path="/artist" component={ArtistPage} />
         <ListenerRoute path="/listener" component={ListenerPage} />
+        <ListenerRoute path="/search/:key" component={SearchPage} />
+        <ListenerRoute path="/genre/:genreName" component={GenrePage} />
         <Route path="/logout">
           <LogoutPage></LogoutPage>
         </Route>

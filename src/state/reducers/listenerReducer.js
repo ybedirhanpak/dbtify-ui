@@ -48,25 +48,25 @@ const listenerReducer = (state = initialState, action) => {
         message: action.payload.message,
         error: action.payload.error,
       };
-    case actionTypes.FETCH_ALL_SONG_SEARCH_SUCCESS:
+    case actionTypes.FETCH_SONG_SEARCH_SUCCESS:
       return {
         ...state,
         songSearchList: action.payload.songs,
         message: action.payload.message,
       };
-    case actionTypes.FETCH_ALL_SONG_SEARCH_FAIL:
+    case actionTypes.FETCH_SONG_SEARCH_FAIL:
       return {
         ...state,
         message: action.payload.message,
         error: action.payload.error,
       };
-    case actionTypes.FETCH_ALL_SONG_GENRE_SUCCESS:
+    case actionTypes.FETCH_SONG_GENRE_SUCCESS:
       return {
         ...state,
         songGenreList: action.payload.songs,
         message: action.payload.message,
       };
-    case actionTypes.FETCH_ALL_SONG_GENRE_FAIL:
+    case actionTypes.FETCH_SONG_GENRE_FAIL:
       return {
         ...state,
         message: action.payload.message,
