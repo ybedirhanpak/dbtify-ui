@@ -19,8 +19,8 @@ const ListenerLoginForm = (props) => {
   return (
     <UserForm
       options={{
-        colorDark: "#ad1457",
-        colorLight: "#f8bbd0",
+        borderClass: "listener-border",
+        backgroundClass: "listener-background",
         header: "Login as Listener",
         value1: {
           header: "Username",

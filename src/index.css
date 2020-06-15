@@ -32,3 +32,27 @@ code {
   border-radius: 4px;
   margin: 10px 0px;
 }
+
+.listener-border {
+  border-color: #f8bbd0 !important;
+}
+
+.listener-border:focus {
+  box-shadow: 0 0 0 0.2rem #f8bbd091 !important;
+}
+
+.listener-background {
+  background-color: #ad1457 !important;
+}
+
+.artist-border {
+  border-color: #ffe0b2 !important;
+}
+
+.artist-border:focus {
+  box-shadow: 0 0 0 0.2rem #ffe0b285 !important;
+}
+
+.artist-background {
+  background-color: #ff3d00 !important;
+}

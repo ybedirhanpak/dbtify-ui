@@ -19,8 +19,8 @@ const ArtistRegisterForm = (props) => {
   return (
     <UserForm
       options={{
-        colorDark: "#ff3d00",
-        colorLight: "#ffccbc",
+        borderClass: "artist-border",
+        backgroundClass: "artist-background",
         header: "Register as Artist",
         value1: {
           header: "Name",
