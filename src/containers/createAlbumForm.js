@@ -10,6 +10,10 @@ const ArtistRegisterForm = (props) => {
   const alert = useAlert();
 
   const onCreateAlbum = (title, genre) => {
+    if (!title || !genre) {
+      alert.error("Please fill all credentials.");
+      return;
+    }
     if (currentArtist) {
       const album = {
         title,

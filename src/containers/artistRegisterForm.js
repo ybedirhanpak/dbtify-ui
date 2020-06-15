@@ -9,6 +9,10 @@ const ArtistRegisterForm = (props) => {
   const alert = useAlert();
 
   const onRegisterClick = (name, surname) => {
+    if (!name || !surname) {
+      alert.error("Please fill all credentials.");
+      return;
+    }
     const artist = {
       name,
       surname,

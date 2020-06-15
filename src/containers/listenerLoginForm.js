@@ -9,6 +9,10 @@ const ListenerLoginForm = (props) => {
   const alert = useAlert();
 
   const onLoginClick = (username, email) => {
+    if (!username || !email) {
+      alert.error("Please fill all credentials.");
+      return;
+    }
     const listener = {
       username,
       email,

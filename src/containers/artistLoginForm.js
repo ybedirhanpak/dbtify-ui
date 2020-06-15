@@ -9,6 +9,10 @@ const ArtistLoginForm = (props) => {
   const alert = useAlert();
 
   const onLoginClick = (name, surname) => {
+    if (!name || !surname) {
+      alert.error("Please fill all credentials.");
+      return;
+    }
     const artist = {
       name,
       surname,

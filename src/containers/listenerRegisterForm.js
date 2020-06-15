@@ -9,6 +9,10 @@ const ListenerRegisterForm = (props) => {
   const alert = useAlert();
 
   const onRegisterClick = (username, email) => {
+    if (!username || !email) {
+      alert.error("Please fill all credentials.");
+      return;
+    }
     const listener = {
       username,
       email,
