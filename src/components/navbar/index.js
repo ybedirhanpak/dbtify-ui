@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./navbar.css";
 import logo from "../../logo.svg";
 import { Link } from "react-router-dom";
+import SearchBar from "./searchBar";
 
 const Navbar = () => {
   const [collapsed, setCollapsed] = useState(true);
@@ -24,7 +25,7 @@ const Navbar = () => {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-
+      <SearchBar />
       <div className={getCollapseClass()} id="navbarSupportedContent">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">

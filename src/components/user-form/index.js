@@ -25,7 +25,7 @@ const UserForm = ({ options }) => {
   };
 
   return (
-    <div className={"user-form " + borderClass}>
+    <div className={"card " + borderClass}>
       <form>
         <h3>{header}</h3>
         {value1 && (
