@@ -1,10 +1,12 @@
 import React from "react";
-import ListenerAlbumListContainer from "../../containers/allAlbumsListContainer";
+import AllAlbumsListContainer from "../../containers/allAlbumsListContainer";
+import AllSongsListContainer from "../../containers/allSongsListContainer";
 
 const ListenerPage = () => {
   return (
     <div className="page">
-      <ListenerAlbumListContainer />
+      <AllAlbumsListContainer />
+      <AllSongsListContainer />
     </div>
   );
 };

@@ -1,36 +1,36 @@
 import React from "react";
 import { connect } from "react-redux";
-import AlbumList from "../components/album-list";
-import { requestFetchAllAlbums } from "../state/actions/listenerActions";
+import SongList from "../components/song-list";
+import { requestFetchAllSongs } from "../state/actions/listenerActions";
 import { useEffect } from "react";
 import { useAlert } from "react-alert";
 
-const AllAlbumsListContainer = (props) => {
-  const { userListener, fetchAlbums, albumList } = props;
+const AllSongsListContainer = (props) => {
+  const { userListener, fetchSongs, songList } = props;
   const alert = useAlert();
   useEffect(() => {
     if (userListener) {
-      fetchAlbums();
+      fetchSongs();
     } else {
       alert.error("Please log in as listener.");
     }
-  }, [alert, fetchAlbums, userListener]);
+  }, [alert, fetchSongs, userListener]);
 
-  return <AlbumList data={albumList} />;
+  return <SongList data={songList} />;
 };
 
 const mapStateToProps = (state) => {
   return {
     userListener: state.user.listener,
-    albumList: state.listener.albumList,
+    songList: state.listener.songList,
   };
 };
 
 const mapDispatchToProps = {
-  fetchAlbums: requestFetchAllAlbums,
+  fetchSongs: requestFetchAllSongs,
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AllAlbumsListContainer);
+)(AllSongsListContainer);
