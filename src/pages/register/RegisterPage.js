@@ -4,17 +4,13 @@ import RegisterForm from "../../components/register-form";
 const RegisterPage = () => {
   return (
     <div className="page login-page">
-      <div className="container-fluid">
+      <div className="container">
         <div className="row">
           <div className="col-md-6">
-            <div className="form-wrapper">
-              <RegisterForm></RegisterForm>
-            </div>
+            <RegisterForm></RegisterForm>
           </div>
           <div className="col-md-6">
-            <div className="form-wrapper">
-              <RegisterForm></RegisterForm>
-            </div>
+            <RegisterForm></RegisterForm>
           </div>
         </div>
       </div>
