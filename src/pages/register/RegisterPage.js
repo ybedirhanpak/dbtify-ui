@@ -1,6 +1,6 @@
 import React from "react";
-import RegisterForm from "../../components/register-form";
 import ArtistRegisterForm from "../../containers/artistRegisterForm";
+import ListenerRegisterForm from "../../containers/listenerRegisterForm";
 
 const RegisterPage = () => {
   return (
@@ -8,7 +8,7 @@ const RegisterPage = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-6">
-            <RegisterForm></RegisterForm>
+            <ListenerRegisterForm />
           </div>
           <div className="col-md-6">
             <ArtistRegisterForm />
