@@ -4,8 +4,10 @@ import { requestArtistLogin } from "../state/actions/userActions";
 import { useAlert } from "react-alert";
 
 import UserForm from "../components/user-form";
+import { Redirect } from "react-router-dom";
 
 const ArtistLoginForm = (props) => {
+  const { userArtist } = props;
   const alert = useAlert();
 
   const onLoginClick = (name, surname) => {
@@ -19,6 +21,10 @@ const ArtistLoginForm = (props) => {
     };
     props.artistLogin(artist, alert);
   };
+
+  if (userArtist) {
+    return <Redirect to="/artist" />;
+  }
 
   return (
     <UserForm
@@ -44,7 +50,9 @@ const ArtistLoginForm = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    userArtist: state.user.artist,
+  };
 };
 
 const mapDispatchToProps = {

@@ -11,6 +11,7 @@ import LoginPage from "./pages/login/LoginPage";
 import ArtistPage from "./pages/artist/ArtistPage";
 import CreatePage from "./pages/artist/CreatePage";
 import ListenerPage from "./pages/listener/ListenerPage";
+import LogoutPage from "./pages/logout/LogoutPage";
 
 const App = () => {
   return (
@@ -26,7 +27,10 @@ const App = () => {
         <ArtistRoute path="/artist/create" component={CreatePage} />
         <ArtistRoute path="/artist" component={ArtistPage} />
         <ListenerRoute path="/listener" component={ListenerPage} />
-        <Route path="/">
+        <Route path="/logout">
+          <LogoutPage></LogoutPage>
+        </Route>
+        <Route path="/" exact>
           <HomePage></HomePage>
         </Route>
       </Switch>

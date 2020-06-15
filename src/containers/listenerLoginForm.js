@@ -4,8 +4,10 @@ import { requestListenerLogin } from "../state/actions/userActions";
 import { useAlert } from "react-alert";
 
 import UserForm from "../components/user-form";
+import { Redirect } from "react-router-dom";
 
 const ListenerLoginForm = (props) => {
+  const { userListener } = props;
   const alert = useAlert();
 
   const onLoginClick = (username, email) => {
@@ -20,6 +22,9 @@ const ListenerLoginForm = (props) => {
     props.listenerLogin(listener, alert);
   };
 
+  if (userListener) {
+    return <Redirect to="/listener" />;
+  }
   return (
     <UserForm
       options={{
@@ -44,7 +49,9 @@ const ListenerLoginForm = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    userListener: state.user.listener,
+  };
 };
 
 const mapDispatchToProps = {

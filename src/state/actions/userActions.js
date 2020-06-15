@@ -90,7 +90,9 @@ const listenerLoginFail = (response) => {
   };
 };
 
-export const actionCreators = {};
+export const actionCreators = {
+  userReset,
+};
 
 /* Request Creators */
 
