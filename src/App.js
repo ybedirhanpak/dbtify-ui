@@ -12,8 +12,8 @@ import ArtistProfilePage from "./pages/artist/ArtistProfilePage";
 import CreateAlbumSongPage from "./pages/artist/CreateAlbumSongPage";
 import ListenerPage from "./pages/listener/ListenerPage";
 import LogoutPage from "./pages/logout/LogoutPage";
-import SearchPage from "./pages/listener/SearchPage";
-import GenrePage from "./pages/listener/GenrePage";
+import SearchPage from "./pages/song/SearchPage";
+import GenrePage from "./pages/song/GenrePage";
 
 const App = () => {
   return (
