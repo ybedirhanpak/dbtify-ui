@@ -5,9 +5,12 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 // Import Reducers
+import userReducer from "./reducers/userReducer";
 
 // Combine Reducers
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  user: userReducer,
+});
 
 const persistConfig = {
   key: "root",
