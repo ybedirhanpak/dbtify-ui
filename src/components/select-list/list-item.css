@@ -1,0 +1,8 @@
+.list-item.active,
+.list-item:active {
+  background-color: #1db954 !important;
+}
+.list-item-checkbox:checked ~ .list-item-label::before {
+  border-color: #1db954 !important;
+  background-color: #1db954 !important;
+}

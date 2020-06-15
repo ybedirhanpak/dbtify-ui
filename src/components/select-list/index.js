@@ -65,7 +65,7 @@ const SelectList = (props) => {
   return (
     <div style={{ marginBottom: 10 }}>
       <button
-        className="btn btn-primary dropdown-toggle mr-4"
+        className="btn app-btn dropdown-toggle mr-4"
         type="button"
         onClick={() => setCollapsed(!collapsed)}
       >

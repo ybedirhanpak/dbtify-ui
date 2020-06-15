@@ -21,6 +21,12 @@ code {
   display: none !important;
 }
 
+.app-btn {
+  color: #fff;
+  background-color: #1db954;
+  border-color: #1db954;
+}
+
 /* Pages */
 
 .page {

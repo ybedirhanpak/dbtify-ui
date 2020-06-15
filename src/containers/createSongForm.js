@@ -22,12 +22,12 @@ const ArtistRegisterForm = (props) => {
   useEffect(() => {
     // Fetch current artists
     if (userArtist) {
-      fetchCurrentArtist(userArtist.id, alert);
+      fetchCurrentArtist(userArtist.id);
     } else {
       alert.error("Please log in as artist.");
     }
     // Fetch all artists
-    fetchAllArtists(alert);
+    fetchAllArtists();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userArtist]);
 

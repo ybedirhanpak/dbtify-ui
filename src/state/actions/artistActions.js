@@ -153,12 +153,12 @@ export const requestFetchArtist = (id, alert) => {
       if (Success(response)) {
         response.json().then((data) => {
           dispatch(fetchArtistSuccess(data));
-          alert.info(data.message);
+          if (alert) alert.info(data.message);
         });
       } else {
         response.json().then((data) => {
           dispatch(fetchArtistFail(data));
-          alert.error(data.message);
+          if (alert) alert.error(data.message);
           console.log(data.error);
         });
       }
@@ -172,12 +172,12 @@ export const requestFetchAllArtists = (alert) => {
       if (Success(response)) {
         response.json().then((data) => {
           dispatch(fetchAllArtistsSuccess(data));
-          alert.info(data.message);
+          if (alert) alert.info(data.message);
         });
       } else {
         response.json().then((data) => {
           dispatch(fetchAllArtistsFail(data));
-          alert.error(data.message);
+          if (alert) alert.error(data.message);
           console.log(data.error);
         });
       }
