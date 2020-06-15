@@ -4,7 +4,7 @@ import logo from "../../logo.svg";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
 
   const getCollapseClass = () => {
     return collapsed ? "navbar-collapse collapsed" : "navbar-collapse";

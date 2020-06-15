@@ -1,5 +1,6 @@
 import React from "react";
 import CreateAlbumForm from "../../containers/createAlbumForm";
+import CreateSongForm from "../../containers/createSongForm";
 
 const ArtistPage = () => {
   return (
@@ -10,7 +11,7 @@ const ArtistPage = () => {
             <CreateAlbumForm />
           </div>
           <div className="col-md-6">
-            <CreateAlbumForm />
+            <CreateSongForm />
           </div>
         </div>
       </div>

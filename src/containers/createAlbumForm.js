@@ -1,12 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { requestCreateAlbum } from "../state/actions/artistActions";
+import {
+  requestCreateAlbum,
+  requestFetchArtist,
+} from "../state/actions/artistActions";
 import { useAlert } from "react-alert";
 
 import UserForm from "../components/user-form";
 
 const ArtistRegisterForm = (props) => {
-  const { currentArtist } = props;
+  const { userArtist } = props;
   const alert = useAlert();
 
   const onCreateAlbum = (title, genre) => {
@@ -14,13 +17,15 @@ const ArtistRegisterForm = (props) => {
       alert.error("Please fill all credentials.");
       return;
     }
-    if (currentArtist) {
+    if (userArtist) {
       const album = {
         title,
         genre,
-        artistID: currentArtist.id,
+        artistID: userArtist.id,
       };
-      props.createAlbum(album, alert);
+      props.createAlbum(album, alert).then(() => {
+        props.fetchCurrentArtist(userArtist.id, alert);
+      });
     } else {
       alert.error("Please log in as artist.");
     }
@@ -51,12 +56,13 @@ const ArtistRegisterForm = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    currentArtist: state.user.artist,
+    userArtist: state.user.artist,
   };
 };
 
 const mapDispatchToProps = {
   createAlbum: requestCreateAlbum,
+  fetchCurrentArtist: requestFetchArtist,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArtistRegisterForm);

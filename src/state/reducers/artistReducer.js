@@ -1,16 +1,12 @@
 import { actionTypes } from "../actions/artistActions";
 
 const initialState = {
-  album: {
-    list: null,
-    message: "",
-    error: "",
-  },
-  song: {
-    list: null,
-    message: "",
-    error: "",
-  },
+  current: null,
+  list: null,
+  checkedAlbum: null,
+  checkedProducerList: [],
+  message: "",
+  error: "",
 };
 
 const artistReducer = (state = initialState, action) => {
@@ -18,33 +14,48 @@ const artistReducer = (state = initialState, action) => {
     case actionTypes.CREATE_ALBUM_SUCCESS:
       return {
         ...state,
-        album: { ...state.album, message: action.payload.message },
+        message: action.payload.message,
       };
     case actionTypes.CREATE_ALBUM_FAIL:
       return {
         ...state,
-        album: {
-          ...state.album,
-          message: action.payload.message,
-          error: action.payload.error,
-        },
+        message: action.payload.message,
+        error: action.payload.error,
       };
     case actionTypes.CREATE_SONG_SUCCESS:
       return {
         ...state,
-        song: {
-          ...state.song,
-          message: action.payload.message,
-        },
+        message: action.payload.message,
       };
     case actionTypes.CREATE_SONG_FAIL:
       return {
         ...state,
-        song: {
-          ...state.song,
-          message: action.payload.message,
-          error: action.payload.error,
-        },
+        message: action.payload.message,
+        error: action.payload.error,
+      };
+    case actionTypes.FETCH_ARTIST_SUCCESS:
+      return {
+        ...state,
+        current: action.payload.artist,
+        message: action.payload.message,
+      };
+    case actionTypes.FETCH_ARTIST_FAIL:
+      return {
+        ...state,
+        message: action.payload.message,
+        error: action.payload.error,
+      };
+    case actionTypes.FETCH_ALL_ARTISTS_SUCCESS:
+      return {
+        ...state,
+        list: action.payload.artists,
+        message: action.payload.message,
+      };
+    case actionTypes.FETCH_ALL_ARTISTS_FAIL:
+      return {
+        ...state,
+        message: action.payload.message,
+        error: action.payload.error,
       };
     default:
       return state;

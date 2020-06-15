@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { shape, string, func } from "prop-types";
+import SelectList from "../select-list";
 
 const UserForm = ({ options }) => {
   const {
@@ -9,14 +10,18 @@ const UserForm = ({ options }) => {
     value1,
     value2,
     button,
+    selectList1,
+    selectList2,
   } = options;
 
   const [input1, setInput1] = useState("");
   const [input2, setInput2] = useState("");
+  const [inputList1, setInputList1] = useState([]);
+  const [inputList2, setInputList2] = useState([]);
 
   const onButtonClick = (event) => {
     event.preventDefault();
-    button.onClick(input1, input2);
+    button.onClick(input1, input2, inputList1, inputList2);
   };
 
   return (
@@ -47,6 +52,18 @@ const UserForm = ({ options }) => {
           </div>
         )}
 
+        {selectList1 && (
+          <SelectList
+            options={selectList1}
+            onListChange={(list) => setInputList1(list)}
+          />
+        )}
+        {selectList2 && (
+          <SelectList
+            options={selectList2}
+            onListChange={(list) => setInputList2(list)}
+          />
+        )}
         <button
           className={"btn btn-primary " + borderClass + " " + backgroundClass}
           onClick={(event) => onButtonClick(event)}
