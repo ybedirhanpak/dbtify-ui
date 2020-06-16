@@ -4,6 +4,7 @@ import { requestFetchArtist } from "../../state/actions/artistActions";
 import Artist from "../../components/artist";
 import AlbumList from "../../components/album-list";
 import SongList from "../../components/song-list";
+import ArtistList from "../../components/artist-list";
 
 const ArtistPage = (props) => {
   const {
@@ -22,6 +23,12 @@ const ArtistPage = (props) => {
       {currentArtist && <Artist artist={currentArtist} />}
       {currentArtist && <AlbumList data={currentArtist.albums} />}
       {currentArtist && <SongList data={currentArtist.songs} />}
+      {currentArtist && (
+        <ArtistList
+          title="Worked Together"
+          data={currentArtist.workedTogether}
+        />
+      )}
     </div>
   );
 };

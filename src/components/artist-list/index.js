@@ -2,7 +2,7 @@ import React from "react";
 import ListItem from "./listItem";
 
 const ArtistList = (props) => {
-  const { data } = props;
+  const { data, title } = props;
 
   const renderItems = () => {
     const items = data
@@ -15,7 +15,7 @@ const ArtistList = (props) => {
   };
   return (
     <div className="card-fluid">
-      <h3>Artists</h3>
+      <h3>{title ?? "Artists"}</h3>
       <div className="row">{renderItems()}</div>
     </div>
   );

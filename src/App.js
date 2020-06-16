@@ -16,6 +16,7 @@ import SearchPage from "./pages/song/SearchPage";
 import GenrePage from "./pages/song/GenrePage";
 import ArtistPage from "./pages/artist/ArtistPage";
 import AlbumPage from "./pages/album/AlbumPage";
+import ListenerPage from "./pages/listener/ListenerPage";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
         </Route>
         <Route path="/album/:id" component={AlbumPage} />
         <Route path="/artist/:id" component={ArtistPage} />
+        <Route path="/listener/:id" component={ListenerPage} />
         <ArtistRoute
           path="/artistProfile/create"
           component={CreateAlbumSongPage}

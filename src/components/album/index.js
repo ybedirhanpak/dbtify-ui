@@ -6,6 +6,7 @@ const Album = (props) => {
   const { id, title, likes, genre, artist, artistid } = album;
   return (
     <div className="card-fluid-sm">
+      <h4>Album</h4>
       <h5 style={{ fontWeight: "bold" }}>
         <Link
           style={{ color: "black", textDecoration: "none" }}

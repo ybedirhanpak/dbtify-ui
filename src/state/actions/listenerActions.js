@@ -20,6 +20,9 @@ const FETCH_SONG_SEARCH_FAIL = "FETCH_SONG_SEARCH_FAIL";
 const FETCH_SONG_GENRE_SUCCESS = "FETCH_SONG_GENRE_SUCCESS";
 const FETCH_SONG_GENRE_FAIL = "FETCH_SONG_GENRE_FAIL";
 
+const FETCH_LISTENER_SUCCESS = "FETCH_LISTENER_SUCCESS";
+const FETCH_LISTENER_FAIL = "FETCH_LISTENER_FAIL";
+
 export const actionTypes = {
   FETCH_ALL_ALBUMS_SUCCESS,
   FETCH_ALL_ALBUMS_FAIL,
@@ -33,6 +36,8 @@ export const actionTypes = {
   FETCH_SONG_GENRE_FAIL,
   FETCH_ALBUM_SUCCESS,
   FETCH_ALBUM_FAIL,
+  FETCH_LISTENER_SUCCESS,
+  FETCH_LISTENER_FAIL,
 };
 
 /* Action Creators */
@@ -116,6 +121,20 @@ const fetchSongGenreSuccess = (response) => {
 const fetchSongGenreFail = (response) => {
   return {
     type: FETCH_SONG_GENRE_FAIL,
+    payload: response,
+  };
+};
+
+const fetchListenerSuccess = (response) => {
+  return {
+    type: FETCH_LISTENER_SUCCESS,
+    payload: response,
+  };
+};
+
+const fetchListenerFail = (response) => {
+  return {
+    type: FETCH_LISTENER_FAIL,
     payload: response,
   };
 };
@@ -233,6 +252,25 @@ export const requestFetchSongGenre = (genre, alert) => {
       } else {
         response.json().then((data) => {
           dispatch(fetchSongGenreFail(data));
+          if (alert) alert.error(data.message);
+          console.log(data.error);
+        });
+      }
+    });
+  };
+};
+
+export const requestFetchListener = (id, alert) => {
+  return async (dispatch) => {
+    return Get(`/listener/get/${id}`).then((response) => {
+      if (Success(response)) {
+        response.json().then((data) => {
+          dispatch(fetchListenerSuccess(data));
+          if (alert) alert.info(data.message);
+        });
+      } else {
+        response.json().then((data) => {
+          dispatch(fetchListenerFail(data));
           if (alert) alert.error(data.message);
           console.log(data.error);
         });

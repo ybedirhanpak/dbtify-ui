@@ -1,25 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Artist = (props) => {
-  const { artist } = props;
-  const { id, title, likes } = artist;
+const ListItem = (props) => {
+  const { listener } = props;
+  const { id, username, email } = listener;
   return (
     <div className="card-fluid-sm">
-      <h4>Artist</h4>
+      <h4>Listener</h4>
       <h5 style={{ fontWeight: "bold" }}>
         <Link
           style={{ color: "black", textDecoration: "none" }}
-          to={`/artist/${id}`}
+          to={`/listener/${id}`}
         >
-          {title}
+          {username}
         </Link>
       </h5>
-      <span className="badge badge-success" style={{ fontSize: "1rem" }}>
-        ♥ {likes}
+      <span className="badge badge-secondary" style={{ fontSize: "1rem" }}>
+        {email}
       </span>
     </div>
   );
 };
 
-export default Artist;
+export default ListItem;

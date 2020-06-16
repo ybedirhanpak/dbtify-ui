@@ -1,13 +1,13 @@
 import React from "react";
 import ListItem from "./listItem";
 
-const AlbumList = (props) => {
-  const { data, title } = props;
+const ListenerList = (props) => {
+  const { data } = props;
 
   const renderItems = () => {
     const items = data
       ? data.map((element, index) => {
-          const key = element.id + element.title;
+          const key = element.id + element.username;
           return <ListItem key={key} element={element} />;
         })
       : [];
@@ -15,10 +15,10 @@ const AlbumList = (props) => {
   };
   return (
     <div className="card-fluid">
-      <h3>{title ?? "Albums"}</h3>
+      <h3>Listeners</h3>
       <div className="row">{renderItems()}</div>
     </div>
   );
 };
 
-export default AlbumList;
+export default ListenerList;

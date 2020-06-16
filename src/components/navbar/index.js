@@ -35,17 +35,19 @@ const Navbar = (props) => {
         </div>
         <ul className="navbar-nav ml-auto">
           {userArtist && (
-            <li className="nav-item">
-              <Link className="nav-link" to="/artistHome">
-                Artist
-              </Link>
-            </li>
+            <>
+              <li className="nav-item">
+                <Link className="nav-link" to={`/artist/${userArtist.id}`}>
+                  Profile
+                </Link>
+              </li>
+            </>
           )}
           {userListener && (
             <>
               <li className="nav-item">
-                <Link className="nav-link" to="/listenerHome">
-                  Listener
+                <Link className="nav-link" to={`/listener/${userListener.id}`}>
+                  Profile
                 </Link>
               </li>
             </>
