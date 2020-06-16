@@ -1,12 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-const Album = (props) => {
-  const { album } = props;
+const ListItem = (props) => {
+  const { album, userListener } = props;
   const { id, title, likes, genre, artist, artistid } = album;
+
+  const getButtonClass = () => {
+    return getAlbumLiked() ? "app-btn badge" : "app-btn-gray badge";
+  };
+
+  const getAlbumLiked = () => {
+    const filteredList = userListener.likedAlbums.filter(
+      (album) => album.id === id
+    );
+    return filteredList.length > 0;
+  };
+
   return (
     <div className="card-fluid-sm">
-      <h4>Album</h4>
       <h5 style={{ fontWeight: "bold" }}>
         <Link
           style={{ color: "black", textDecoration: "none" }}
@@ -16,9 +28,13 @@ const Album = (props) => {
         </Link>
       </h5>
 
-      <span className="badge badge-success" style={{ fontSize: "1rem" }}>
+      <button
+        className={getButtonClass()}
+        style={{ fontSize: "1rem" }}
+        disabled={getAlbumLiked()}
+      >
         ♥ {likes}
-      </span>
+      </button>
       <br></br>
       <Link
         className="badge badge-light"
@@ -39,4 +55,10 @@ const Album = (props) => {
   );
 };
 
-export default Album;
+const mapStateToProps = (state) => {
+  return {
+    userListener: state.user.listener,
+  };
+};
+
+export default connect(mapStateToProps, null)(ListItem);

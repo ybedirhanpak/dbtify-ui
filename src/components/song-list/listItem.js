@@ -1,16 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 const ListItem = (props) => {
-  const { element } = props;
+  const { element, userListener } = props;
   const { id, title, likes, album, genre, albumid } = element;
+
+  const getButtonClass = () => {
+    return getAlbumLiked() ? "app-btn badge" : "app-btn-gray badge";
+  };
+
+  const getAlbumLiked = () => {
+    const filteredList = userListener.likedAlbums.filter(
+      (album) => album.id === id
+    );
+    return filteredList.length > 0;
+  };
+
   return (
     <div className="col-md-3 card-fluid-sm">
       <h5 style={{ fontWeight: "bold" }}>{title}</h5>
 
-      <span className="badge badge-success" style={{ fontSize: "1rem" }}>
+      <button
+        className={getButtonClass()}
+        style={{ fontSize: "1rem" }}
+        disabled={getAlbumLiked()}
+      >
         ♥ {likes}
-      </span>
+      </button>
       <br></br>
       <Link
         className="badge badge-light"
@@ -31,4 +48,10 @@ const ListItem = (props) => {
   );
 };
 
-export default ListItem;
+const mapStateToProps = (state) => {
+  return {
+    userListener: state.user.listener,
+  };
+};
+
+export default connect(mapStateToProps, null)(ListItem);

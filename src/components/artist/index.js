@@ -6,7 +6,6 @@ const Artist = (props) => {
   const { id, title, likes } = artist;
   return (
     <div className="card-fluid-sm">
-      <h4>Artist</h4>
       <h5 style={{ fontWeight: "bold" }}>
         <Link
           style={{ color: "black", textDecoration: "none" }}
@@ -15,7 +14,7 @@ const Artist = (props) => {
           {title}
         </Link>
       </h5>
-      <span className="badge badge-success" style={{ fontSize: "1rem" }}>
+      <span className="app-btn-orange badge" style={{ fontSize: "1rem" }}>
         ♥ {likes}
       </span>
     </div>

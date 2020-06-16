@@ -25,6 +25,32 @@ code {
   color: #fff;
   background-color: #1db954;
   border-color: #1db954;
+  border: 1px solid transparent;
+}
+
+.app-btn:disabled {
+  opacity: 0.65;
+}
+
+.app-btn-gray {
+  color: #fff;
+  background-color: #757575;
+  border-color: #757575;
+  border: 1px solid transparent;
+}
+
+.app-btn-orange {
+  color: #fff;
+  background-color: #ef6c00;
+  border-color: #ef6c00;
+  border: 1px solid transparent;
+}
+
+.app-btn-pink {
+  color: #fff;
+  background-color: #ad1457;
+  border-color: #ad1457;
+  border: 1px solid transparent;
 }
 
 /* Pages */
@@ -80,4 +106,8 @@ code {
 
 .artist-background {
   background-color: #ff3d00 !important;
+}
+
+.btn-liked {
+  color: black;
 }
