@@ -19,7 +19,7 @@ const ArtistPage = (props) => {
 
   return (
     <div className="page">
-      <Artist artist={currentArtist} />
+      {currentArtist && <Artist artist={currentArtist} />}
       {currentArtist && <AlbumList data={currentArtist.albums} />}
       {currentArtist && <SongList data={currentArtist.songs} />}
     </div>
