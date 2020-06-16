@@ -36,6 +36,7 @@ const UpdateAlbumForm = (props) => {
       };
       updateAlbum(currentAlbum.id, album, alert).then(() => {
         fetchCurrentArtist(userArtist.id);
+        fetchAlbum(albumid);
       });
     } else {
       alert.error("Please log in as artist.");
@@ -47,22 +48,22 @@ const UpdateAlbumForm = (props) => {
       options={{
         borderClass: "artist-border",
         backgroundClass: "artist-background",
-        header: "Create Album",
+        header: "Update Album",
         value1: {
           header: "Title",
           name: "title",
-          init: currentAlbum ? currentAlbum.title : "",
         },
         value2: {
           header: "Genre",
           name: "genre",
-          init: currentAlbum ? currentAlbum.genre : "",
         },
         button: {
           name: "Update",
           onClick: onUpdateAlbum,
         },
       }}
+      value1Init={currentAlbum ? currentAlbum.title : ""}
+      value2Init={currentAlbum ? currentAlbum.genre : ""}
     />
   );
 };

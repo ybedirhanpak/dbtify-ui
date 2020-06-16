@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { shape, string, func } from "prop-types";
 import SelectList from "../select-list";
 
-const UserForm = ({ options }) => {
+const UserForm = ({ options, value1Init, value2Init }) => {
   const {
     borderClass,
     backgroundClass,
@@ -14,8 +14,8 @@ const UserForm = ({ options }) => {
     selectList2,
   } = options;
 
-  const [input1, setInput1] = useState(value1 ? value1.init : "");
-  const [input2, setInput2] = useState(value2 ? value2.init : "");
+  const [input1, setInput1] = useState(value1Init);
+  const [input2, setInput2] = useState(value2Init);
   const [inputList1, setInputList1] = useState([]);
   const [inputList2, setInputList2] = useState([]);
 
@@ -23,6 +23,14 @@ const UserForm = ({ options }) => {
     event.preventDefault();
     button.onClick(input1, input2, inputList1, inputList2);
   };
+
+  useEffect(() => {
+    setInput1(value1Init);
+  }, [value1Init]);
+
+  useEffect(() => {
+    setInput2(value2Init);
+  }, [value2Init]);
 
   return (
     <div className={"card " + borderClass}>

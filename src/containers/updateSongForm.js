@@ -1,48 +1,35 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import {
-  requestCreateSong,
-  requestFetchArtist,
-  requestFetchAllArtists,
-} from "../state/actions/artistActions";
+import { requestUpdateSong } from "../state/actions/artistActions";
+import { requestFetchSong } from "../state/actions/listenerActions";
 import { useAlert } from "react-alert";
 
 import UserForm from "../components/user-form";
 
 const UpdateSongForm = (props) => {
-  const {
-    userArtist,
-    allArtists,
-    currentAlbums,
-    fetchCurrentArtist,
-    fetchAllArtists,
-  } = props;
+  const { songid, userArtist, fetchSong, updateSong, currentSong } = props;
   const alert = useAlert();
 
   useEffect(() => {
-    // Fetch current artists
     if (userArtist) {
-      fetchCurrentArtist(userArtist.id);
+      fetchSong(songid);
     } else {
       alert.error("Please log in as artist.");
     }
-    // Fetch all artists
-    fetchAllArtists();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userArtist]);
+  }, [alert, fetchSong, songid, userArtist]);
 
-  const onCreateSong = (title, _, producerIDs, albumIDs) => {
-    if (!title || !producerIDs || !albumIDs || !albumIDs[0]) {
+  const onUpdateSong = (title) => {
+    if (!title) {
       alert.error("Please fill all credentials.");
       return;
     }
     if (userArtist) {
       const song = {
         title,
-        producerIDs: producerIDs,
-        albumID: albumIDs[0],
       };
-      props.createSong(song, alert);
+      updateSong(song, alert).then(() => {
+        fetchSong(song.id);
+      });
     } else {
       alert.error("Please log in as artist.");
     }
@@ -53,28 +40,17 @@ const UpdateSongForm = (props) => {
       options={{
         borderClass: "artist-border",
         backgroundClass: "artist-background",
-        header: "Create Song",
+        header: "Update Song",
         value1: {
           header: "Title",
           name: "title",
         },
-        selectList1: {
-          header: "Producers",
-          data: allArtists,
-          userArtist: userArtist.id,
-          type: "producer",
-        },
-        selectList2: {
-          header: "Album",
-          data: currentAlbums,
-          userArtist: userArtist.id,
-          type: "album",
-        },
         button: {
           name: "Create",
-          onClick: onCreateSong,
+          onClick: onUpdateSong,
         },
       }}
+      value1Init={currentSong ? currentSong.title : ""}
     />
   );
 };
@@ -82,16 +58,13 @@ const UpdateSongForm = (props) => {
 const mapStateToProps = (state) => {
   return {
     userArtist: state.user.artist,
-    allArtists: state.artist.list,
-    currentAlbums: state.artist.current.albums,
-    artistMessage: state.artist.message,
+    currentSong: state.listener.song,
   };
 };
 
 const mapDispatchToProps = {
-  createSong: requestCreateSong,
-  fetchCurrentArtist: requestFetchArtist,
-  fetchAllArtists: requestFetchAllArtists,
+  updateSong: requestUpdateSong,
+  fetchSong: requestFetchSong,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateSongForm);

@@ -323,12 +323,12 @@ export const requestUpdateSong = (id, song, alert) => {
     return Post(`/song/update/${id}`, song).then((response) => {
       if (Success(response)) {
         response.json().then((data) => {
-          dispatch(createSongSuccess(data));
+          dispatch(updateSongSuccess(data));
           alert.info(data.message);
         });
       } else {
         response.json().then((data) => {
-          dispatch(createSongFail(data));
+          dispatch(updateSongFail(data));
           alert.error(data.message);
           console.log(data.error);
         });

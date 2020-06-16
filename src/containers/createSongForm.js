@@ -28,8 +28,7 @@ const CreateSongForm = (props) => {
     }
     // Fetch all artists
     fetchAllArtists();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userArtist]);
+  }, [alert, fetchAllArtists, fetchCurrentArtist, userArtist]);
 
   const onCreateSong = (title, _, producerIDs, albumIDs) => {
     if (!title || !producerIDs || !albumIDs || !albumIDs[0]) {

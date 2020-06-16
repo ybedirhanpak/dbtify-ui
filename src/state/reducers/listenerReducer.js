@@ -7,6 +7,7 @@ const initialState = {
   songSearchList: [],
   songGenreList: [],
   album: null,
+  song: null,
   current: null,
   message: "",
   error: "",
@@ -115,6 +116,18 @@ const listenerReducer = (state = initialState, action) => {
         message: action.payload.message,
       };
     case actionTypes.LIKE_ALBUM_FAIL:
+      return {
+        ...state,
+        message: action.payload.message,
+        error: action.payload.error,
+      };
+    case actionTypes.FETCH_SONG_SUCCESS:
+      return {
+        ...state,
+        song: action.payload.song,
+        message: action.payload.message,
+      };
+    case actionTypes.FETCH_SONG_FAIL:
       return {
         ...state,
         message: action.payload.message,

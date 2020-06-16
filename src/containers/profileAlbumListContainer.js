@@ -14,8 +14,7 @@ const ProfileAlbumListContainer = (props) => {
     } else {
       alert.error("Please log in as artist.");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userArtist]);
+  }, [alert, fetchCurrentArtist, userArtist]);
   if (currentArtist) {
     return <AlbumList data={currentArtist.albums} />;
   } else {
