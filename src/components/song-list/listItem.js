@@ -17,10 +17,17 @@ const ListItem = (props) => {
   };
 
   const getSongLiked = () => {
+    if (!userListener) {
+      return false;
+    }
     const filteredList = userListener.likedSongs.filter(
       (album) => album.id === id
     );
     return filteredList.length > 0;
+  };
+
+  const getButtonDisabled = () => {
+    return !userListener || getSongLiked();
   };
 
   const onButtonClick = () => {
@@ -40,7 +47,7 @@ const ListItem = (props) => {
       <button
         className={getButtonClass()}
         style={{ fontSize: "1rem" }}
-        disabled={getSongLiked()}
+        disabled={getButtonDisabled()}
         onClick={onButtonClick}
       >
         ♥ {likes}

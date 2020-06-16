@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import {
+  requestLikeAlbum,
+  requestFetchCurrentListener,
+} from "../../state/actions/listenerActions";
 
 const ListItem = (props) => {
-  const { album, userListener } = props;
+  const { album, userListener, likeAlbum, fetchCurrentListener } = props;
   const { id, title, likes, genre, artist, artistid } = album;
 
   const getButtonClass = () => {
@@ -11,10 +15,27 @@ const ListItem = (props) => {
   };
 
   const getAlbumLiked = () => {
+    if (!userListener) {
+      return false;
+    }
     const filteredList = userListener.likedAlbums.filter(
       (album) => album.id === id
     );
     return filteredList.length > 0;
+  };
+
+  const getButtonDisabled = () => {
+    return !userListener || getAlbumLiked();
+  };
+
+  const onButtonClick = () => {
+    const body = {
+      listenerID: userListener.id,
+      albumID: id,
+    };
+    likeAlbum(body).then(() => {
+      fetchCurrentListener(userListener.id);
+    });
   };
 
   return (
@@ -31,7 +52,8 @@ const ListItem = (props) => {
       <button
         className={getButtonClass()}
         style={{ fontSize: "1rem" }}
-        disabled={getAlbumLiked()}
+        disabled={getButtonDisabled()}
+        onClick={() => onButtonClick()}
       >
         ♥ {likes}
       </button>
@@ -61,4 +83,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(ListItem);
+const mapDispatchToProps = {
+  likeAlbum: requestLikeAlbum,
+  fetchCurrentListener: requestFetchCurrentListener,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListItem);
