@@ -57,6 +57,28 @@ const artistReducer = (state = initialState, action) => {
         message: action.payload.message,
         error: action.payload.error,
       };
+    case actionTypes.DELETE_ALBUM_SUCCESS:
+      return {
+        ...state,
+        message: action.payload.message,
+      };
+    case actionTypes.DELETE_ALBUM_FAIL:
+      return {
+        ...state,
+        message: action.payload.message,
+        error: action.payload.error,
+      };
+    case actionTypes.DELETE_SONG_SUCCESS:
+      return {
+        ...state,
+        message: action.payload.message,
+      };
+    case actionTypes.DELETE_SONG_FAIL:
+      return {
+        ...state,
+        message: action.payload.message,
+        error: action.payload.error,
+      };
     default:
       return state;
   }

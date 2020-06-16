@@ -5,11 +5,24 @@ import {
   requestLikeAlbum,
   requestFetchCurrentListener,
 } from "../../state/actions/listenerActions";
+import {
+  requestDeleteAlbum,
+  requestFetchArtist,
+} from "../../state/actions/artistActions";
+import { useAlert } from "react-alert";
 
 const ListItem = (props) => {
-  const { album, userListener, likeAlbum, fetchCurrentListener } = props;
+  const {
+    album,
+    userListener,
+    likeAlbum,
+    fetchCurrentListener,
+    userArtist,
+    deleteAlbum,
+    fetchArtist,
+  } = props;
   const { id, title, likes, genre, artist, artistid } = album;
-
+  const alert = useAlert();
   const getButtonClass = () => {
     return getAlbumLiked() ? "app-btn badge" : "app-btn-gray badge";
   };
@@ -36,6 +49,20 @@ const ListItem = (props) => {
     likeAlbum(body).then(() => {
       fetchCurrentListener(userListener.id);
     });
+  };
+
+  const artistCanDelete = () => {
+    return userArtist && artistid === userArtist.id;
+  };
+
+  const onDeleteAlbum = () => {
+    if (artistCanDelete()) {
+      deleteAlbum(id, alert).then(() => {
+        fetchArtist(userArtist.id);
+      });
+    } else {
+      alert.error("You cannot delete this album.");
+    }
   };
 
   return (
@@ -73,6 +100,14 @@ const ListItem = (props) => {
       >
         Artist: {artist}
       </Link>
+      {artistCanDelete() && (
+        <>
+          <br></br>
+          <button className="btn btn-danger badge" onClick={onDeleteAlbum}>
+            Delete
+          </button>
+        </>
+      )}
     </div>
   );
 };
@@ -80,12 +115,15 @@ const ListItem = (props) => {
 const mapStateToProps = (state) => {
   return {
     userListener: state.user.listener,
+    userArtist: state.user.artist,
   };
 };
 
 const mapDispatchToProps = {
   likeAlbum: requestLikeAlbum,
   fetchCurrentListener: requestFetchCurrentListener,
+  deleteAlbum: requestDeleteAlbum,
+  fetchArtist: requestFetchArtist,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListItem);

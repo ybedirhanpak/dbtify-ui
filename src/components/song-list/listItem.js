@@ -5,14 +5,26 @@ import {
   requestLikeSong,
   requestFetchCurrentListener,
 } from "../../state/actions/listenerActions";
+import {
+  requestDeleteSong,
+  requestFetchArtist,
+} from "../../state/actions/artistActions";
 import { useAlert } from "react-alert";
 
 const ListItem = (props) => {
-  const { element, userListener, likeSong, fetchCurrentListener } = props;
+  const {
+    element,
+    userListener,
+    likeSong,
+    fetchCurrentListener,
+    userArtist,
+    deleteSong,
+    fetchArtist,
+  } = props;
   const { id, title, likes, album, genre, albumid } = element;
   const alert = useAlert();
 
-  const getButtonClass = () => {
+  const getLikeButtonClass = () => {
     return getSongLiked() ? "app-btn badge" : "app-btn-gray badge";
   };
 
@@ -26,11 +38,11 @@ const ListItem = (props) => {
     return filteredList.length > 0;
   };
 
-  const getButtonDisabled = () => {
+  const getLikeButtonDisabled = () => {
     return !userListener || getSongLiked();
   };
 
-  const onButtonClick = () => {
+  const onLikeButtonClick = () => {
     const body = {
       listenerID: userListener.id,
       songID: id,
@@ -40,15 +52,30 @@ const ListItem = (props) => {
     });
   };
 
+  const artistCanUpdateDelete = () => {
+    const filteredList = userArtist.songs.filter((song) => song.id === id);
+    return userArtist && filteredList.length > 0;
+  };
+
+  const onDeleteSong = () => {
+    if (artistCanUpdateDelete()) {
+      deleteSong(id, alert).then(() => {
+        fetchArtist(userArtist.id);
+      });
+    } else {
+      alert.error("You cannot delete this album.");
+    }
+  };
+
   return (
     <div className="col-md-3 card-fluid-sm">
       <h5 style={{ fontWeight: "bold" }}>{title}</h5>
 
       <button
-        className={getButtonClass()}
+        className={getLikeButtonClass()}
         style={{ fontSize: "1rem" }}
-        disabled={getButtonDisabled()}
-        onClick={onButtonClick}
+        disabled={getLikeButtonDisabled()}
+        onClick={onLikeButtonClick}
       >
         ♥ {likes}
       </button>
@@ -68,6 +95,21 @@ const ListItem = (props) => {
       >
         Genre: {genre}
       </Link>
+      {artistCanUpdateDelete() && (
+        <>
+          <br></br>
+          <Link
+            to={`/updateSong/${id}`}
+            className="btn btn-warning badge"
+            style={{ marginRight: 10 }}
+          >
+            Update
+          </Link>
+          <button className="btn btn-danger badge" onClick={onDeleteSong}>
+            Delete
+          </button>
+        </>
+      )}
     </div>
   );
 };
@@ -75,12 +117,15 @@ const ListItem = (props) => {
 const mapStateToProps = (state) => {
   return {
     userListener: state.user.listener,
+    userArtist: state.user.artist,
   };
 };
 
 const mapDispatchToProps = {
   likeSong: requestLikeSong,
   fetchCurrentListener: requestFetchCurrentListener,
+  deleteSong: requestDeleteSong,
+  fetchArtist: requestFetchArtist,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListItem);

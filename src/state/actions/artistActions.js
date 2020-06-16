@@ -17,6 +17,12 @@ const FETCH_ALL_ARTISTS_FAIL = "FETCH_ALL_ARTISTS_FAIL";
 const CHECK_ARTIST = "CHECK_ARTIST";
 const CHECK_PRODUCER = "CHECK_PRODUCER";
 
+const DELETE_ALBUM_SUCCESS = "DELETE_ALBUM_SUCCESS";
+const DELETE_ALBUM_FAIL = "DELETE_ALBUM_FAIL";
+
+const DELETE_SONG_SUCCESS = "DELETE_SONG_SUCCESS";
+const DELETE_SONG_FAIL = "DELETE_SONG_FAIL";
+
 export const actionTypes = {
   CREATE_ALBUM_SUCCESS,
   CREATE_ALBUM_FAIL,
@@ -28,6 +34,10 @@ export const actionTypes = {
   FETCH_ALL_ARTISTS_FAIL,
   CHECK_ARTIST,
   CHECK_PRODUCER,
+  DELETE_ALBUM_SUCCESS,
+  DELETE_ALBUM_FAIL,
+  DELETE_SONG_SUCCESS,
+  DELETE_SONG_FAIL,
 };
 
 /* Action Creators */
@@ -99,6 +109,34 @@ const checkProducer = (producerID) => {
   return {
     type: CHECK_PRODUCER,
     payload: producerID,
+  };
+};
+
+const deleteAlbumSuccess = (response) => {
+  return {
+    type: DELETE_ALBUM_SUCCESS,
+    payload: response,
+  };
+};
+
+const deleteAlbumFail = (response) => {
+  return {
+    type: DELETE_ALBUM_FAIL,
+    payload: response,
+  };
+};
+
+const deleteSongSuccess = (response) => {
+  return {
+    type: DELETE_SONG_SUCCESS,
+    payload: response,
+  };
+};
+
+const deleteSongFail = (response) => {
+  return {
+    type: DELETE_SONG_FAIL,
+    payload: response,
   };
 };
 
@@ -178,6 +216,44 @@ export const requestFetchAllArtists = (alert) => {
         response.json().then((data) => {
           dispatch(fetchAllArtistsFail(data));
           if (alert) alert.error(data.message);
+          console.log(data.error);
+        });
+      }
+    });
+  };
+};
+
+export const requestDeleteAlbum = (id, alert) => {
+  return async (dispatch) => {
+    return Post(`/album/delete/${id}`).then((response) => {
+      if (Success(response)) {
+        response.json().then((data) => {
+          dispatch(deleteAlbumSuccess(data));
+          alert.info(data.message);
+        });
+      } else {
+        response.json().then((data) => {
+          dispatch(deleteAlbumFail(data));
+          alert.error(data.message);
+          console.log(data.error);
+        });
+      }
+    });
+  };
+};
+
+export const requestDeleteSong = (id, alert) => {
+  return async (dispatch) => {
+    return Post(`/song/delete/${id}`).then((response) => {
+      if (Success(response)) {
+        response.json().then((data) => {
+          dispatch(deleteSongSuccess(data));
+          alert.info(data.message);
+        });
+      } else {
+        response.json().then((data) => {
+          dispatch(deleteSongFail(data));
+          alert.error(data.message);
           console.log(data.error);
         });
       }
