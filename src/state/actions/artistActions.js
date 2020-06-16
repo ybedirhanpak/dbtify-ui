@@ -29,6 +29,9 @@ const UPDATE_ALBUM_FAIL = "UPDATE_ALBUM_FAIL";
 const UPDATE_SONG_SUCCESS = "UPDATE_SONG_SUCCESS";
 const UPDATE_SONG_FAIL = "UPDATE_SONG_FAIL";
 
+const FETCH_CURRENT_ARTIST_SUCCESS = "FETCH_CURRENT_ARTIST_SUCCESS";
+const FETCH_CURRENT_ARTIST_FAIL = "FETCH_CURRENT_ARTIST_FAIL";
+
 export const actionTypes = {
   CREATE_ALBUM_SUCCESS,
   CREATE_ALBUM_FAIL,
@@ -48,6 +51,8 @@ export const actionTypes = {
   UPDATE_ALBUM_FAIL,
   UPDATE_SONG_SUCCESS,
   UPDATE_SONG_FAIL,
+  FETCH_CURRENT_ARTIST_SUCCESS,
+  FETCH_CURRENT_ARTIST_FAIL,
 };
 
 /* Action Creators */
@@ -174,6 +179,20 @@ const updateSongSuccess = (response) => {
 const updateSongFail = (response) => {
   return {
     type: UPDATE_SONG_FAIL,
+    payload: response,
+  };
+};
+
+const fetchCurrentArtistSuccess = (response) => {
+  return {
+    type: FETCH_CURRENT_ARTIST_SUCCESS,
+    payload: response,
+  };
+};
+
+const fetchCurrentArtistFail = (response) => {
+  return {
+    type: FETCH_CURRENT_ARTIST_FAIL,
     payload: response,
   };
 };
@@ -330,6 +349,25 @@ export const requestUpdateSong = (id, song, alert) => {
         response.json().then((data) => {
           dispatch(updateSongFail(data));
           alert.error(data.message);
+          console.log(data.error);
+        });
+      }
+    });
+  };
+};
+
+export const requestFetchCurrentArtist = (id, alert) => {
+  return async (dispatch) => {
+    return Get(`/artist/get/${id}`).then((response) => {
+      if (Success(response)) {
+        response.json().then((data) => {
+          dispatch(fetchCurrentArtistSuccess(data));
+          if (alert) alert.info(data.message);
+        });
+      } else {
+        response.json().then((data) => {
+          dispatch(fetchCurrentArtistFail(data));
+          if (alert) alert.error(data.message);
           console.log(data.error);
         });
       }

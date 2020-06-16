@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import { shape, string, func } from "prop-types";
 import SelectList from "../select-list";
 
-const UserForm = ({ options, value1Init, value2Init }) => {
+const UserForm = ({
+  options,
+  value1Init = "",
+  value2Init = "",
+  select1Init = [],
+  select2Init = [],
+}) => {
   const {
     borderClass,
     backgroundClass,

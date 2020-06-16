@@ -8,7 +8,7 @@ const LogoutPage = (props) => {
 
   useEffect(() => {
     logout();
-  }, []);
+  }, [logout]);
 
   return <Redirect to="/" />;
 };

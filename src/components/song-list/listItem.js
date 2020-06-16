@@ -53,7 +53,9 @@ const ListItem = (props) => {
   };
 
   const artistCanUpdateDelete = () => {
-    const filteredList = userArtist.songs.filter((song) => song.id === id);
+    const filteredList = userArtist
+      ? userArtist.songs.filter((song) => song.id === id)
+      : [];
     return userArtist && filteredList.length > 0;
   };
 

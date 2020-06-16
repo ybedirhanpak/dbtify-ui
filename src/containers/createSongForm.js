@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import {
   requestCreateSong,
   requestFetchArtist,
+  requestFetchCurrentArtist,
   requestFetchAllArtists,
 } from "../state/actions/artistActions";
 import { useAlert } from "react-alert";
@@ -16,6 +17,8 @@ const CreateSongForm = (props) => {
     currentAlbums,
     fetchCurrentArtist,
     fetchAllArtists,
+    fetchUserArtist,
+    createSong,
   } = props;
   const alert = useAlert();
 
@@ -38,10 +41,13 @@ const CreateSongForm = (props) => {
     if (userArtist) {
       const song = {
         title,
-        producerIDs: producerIDs,
+        producerIDs: producerIDs.length === 0 ? [userArtist.id] : producerIDs,
         albumID: albumIDs[0],
       };
-      props.createSong(song, alert);
+      createSong(song, alert).then(() => {
+        fetchCurrentArtist(userArtist.id);
+        fetchUserArtist(userArtist.id);
+      });
     } else {
       alert.error("Please log in as artist.");
     }
@@ -90,6 +96,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   createSong: requestCreateSong,
   fetchCurrentArtist: requestFetchArtist,
+  fetchUserArtist: requestFetchCurrentArtist,
   fetchAllArtists: requestFetchAllArtists,
 };
 
