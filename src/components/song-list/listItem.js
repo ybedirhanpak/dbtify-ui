@@ -1,20 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import {
+  requestLikeSong,
+  requestFetchCurrentListener,
+} from "../../state/actions/listenerActions";
+import { useAlert } from "react-alert";
 
 const ListItem = (props) => {
-  const { element, userListener } = props;
+  const { element, userListener, likeSong, fetchCurrentListener } = props;
   const { id, title, likes, album, genre, albumid } = element;
+  const alert = useAlert();
 
   const getButtonClass = () => {
-    return getAlbumLiked() ? "app-btn badge" : "app-btn-gray badge";
+    return getSongLiked() ? "app-btn badge" : "app-btn-gray badge";
   };
 
-  const getAlbumLiked = () => {
-    const filteredList = userListener.likedAlbums.filter(
+  const getSongLiked = () => {
+    const filteredList = userListener.likedSongs.filter(
       (album) => album.id === id
     );
     return filteredList.length > 0;
+  };
+
+  const onButtonClick = () => {
+    const body = {
+      listenerID: userListener.id,
+      songID: id,
+    };
+    likeSong(body, alert).then(() => {
+      fetchCurrentListener(userListener.id, alert);
+    });
   };
 
   return (
@@ -24,7 +40,8 @@ const ListItem = (props) => {
       <button
         className={getButtonClass()}
         style={{ fontSize: "1rem" }}
-        disabled={getAlbumLiked()}
+        disabled={getSongLiked()}
+        onClick={onButtonClick}
       >
         ♥ {likes}
       </button>
@@ -54,4 +71,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(ListItem);
+const mapDispatchToProps = {
+  likeSong: requestLikeSong,
+  fetchCurrentListener: requestFetchCurrentListener,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListItem);

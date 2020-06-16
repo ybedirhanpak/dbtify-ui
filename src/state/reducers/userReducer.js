@@ -1,4 +1,5 @@
 import { actionTypes } from "../actions/userActions";
+import { actionTypes as listenerActionTypes } from "../actions/listenerActions";
 
 const initialState = {
   artist: null,
@@ -54,6 +55,18 @@ const userReducer = (state = initialState, action) => {
         message: action.payload.message,
       };
     case actionTypes.LISTENER_LOGIN_FAIL:
+      return {
+        ...state,
+        message: action.payload.message,
+        error: action.payload.error,
+      };
+    case listenerActionTypes.FETCH_CURRENT_LISTENER_SUCCESS:
+      return {
+        ...state,
+        listener: action.payload.listener,
+        message: action.payload.message,
+      };
+    case listenerActionTypes.FETCH_CURRENT_LISTENER_FAIL:
       return {
         ...state,
         message: action.payload.message,

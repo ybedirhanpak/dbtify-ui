@@ -23,6 +23,15 @@ const FETCH_SONG_GENRE_FAIL = "FETCH_SONG_GENRE_FAIL";
 const FETCH_LISTENER_SUCCESS = "FETCH_LISTENER_SUCCESS";
 const FETCH_LISTENER_FAIL = "FETCH_LISTENER_FAIL";
 
+const FETCH_CURRENT_LISTENER_SUCCESS = "FETCH_CURRENT_LISTENER_SUCCESS";
+const FETCH_CURRENT_LISTENER_FAIL = "FETCH_CURRENT_LISTENER_FAIL";
+
+const LIKE_SONG_SUCCESS = "LIKE_SONG_SUCCESS";
+const LIKE_SONG_FAIL = "LIKE_SONG_FAIL";
+
+const LIKE_ALBUM_SUCCESS = "LIKE_ALBUM_SUCCESS";
+const LIKE_ALBUM_FAIL = "LIKE_ALBUM_FAIL";
+
 export const actionTypes = {
   FETCH_ALL_ALBUMS_SUCCESS,
   FETCH_ALL_ALBUMS_FAIL,
@@ -38,6 +47,12 @@ export const actionTypes = {
   FETCH_ALBUM_FAIL,
   FETCH_LISTENER_SUCCESS,
   FETCH_LISTENER_FAIL,
+  FETCH_CURRENT_LISTENER_SUCCESS,
+  FETCH_CURRENT_LISTENER_FAIL,
+  LIKE_SONG_SUCCESS,
+  LIKE_SONG_FAIL,
+  LIKE_ALBUM_SUCCESS,
+  LIKE_ALBUM_FAIL,
 };
 
 /* Action Creators */
@@ -135,6 +150,48 @@ const fetchListenerSuccess = (response) => {
 const fetchListenerFail = (response) => {
   return {
     type: FETCH_LISTENER_FAIL,
+    payload: response,
+  };
+};
+
+const fetchCurrentListenerSuccess = (response) => {
+  return {
+    type: FETCH_CURRENT_LISTENER_SUCCESS,
+    payload: response,
+  };
+};
+
+const fetchCurrentListenerFail = (response) => {
+  return {
+    type: FETCH_CURRENT_LISTENER_FAIL,
+    payload: response,
+  };
+};
+
+const likeSongSuccess = (response) => {
+  return {
+    type: LIKE_SONG_SUCCESS,
+    payload: response,
+  };
+};
+
+const likeSongFail = (response) => {
+  return {
+    type: LIKE_SONG_FAIL,
+    payload: response,
+  };
+};
+
+const likeAlbumSuccess = (response) => {
+  return {
+    type: LIKE_ALBUM_SUCCESS,
+    payload: response,
+  };
+};
+
+const likeAlbumFail = (response) => {
+  return {
+    type: LIKE_ALBUM_FAIL,
     payload: response,
   };
 };
@@ -271,6 +328,63 @@ export const requestFetchListener = (id, alert) => {
       } else {
         response.json().then((data) => {
           dispatch(fetchListenerFail(data));
+          if (alert) alert.error(data.message);
+          console.log(data.error);
+        });
+      }
+    });
+  };
+};
+
+export const requestFetchCurrentListener = (id, alert) => {
+  return async (dispatch) => {
+    return Get(`/listener/get/${id}`).then((response) => {
+      if (Success(response)) {
+        response.json().then((data) => {
+          dispatch(fetchCurrentListenerSuccess(data));
+          if (alert) alert.info(data.message);
+        });
+      } else {
+        response.json().then((data) => {
+          dispatch(fetchCurrentListenerFail(data));
+          if (alert) alert.error(data.message);
+          console.log(data.error);
+        });
+      }
+    });
+  };
+};
+
+export const requestLikeSong = (body, alert) => {
+  return async (dispatch) => {
+    return Post(`/listener/likeSong`, body).then((response) => {
+      if (Success(response)) {
+        response.json().then((data) => {
+          dispatch(likeSongSuccess(data));
+          if (alert) alert.info(data.message);
+        });
+      } else {
+        response.json().then((data) => {
+          dispatch(likeSongFail(data));
+          if (alert) alert.error(data.message);
+          console.log(data.error);
+        });
+      }
+    });
+  };
+};
+
+export const requestLikeAlbum = (body, alert) => {
+  return async (dispatch) => {
+    return Post(`/listener/likeAlbum`, body).then((response) => {
+      if (Success(response)) {
+        response.json().then((data) => {
+          dispatch(likeAlbumSuccess(data));
+          if (alert) alert.info(data.message);
+        });
+      } else {
+        response.json().then((data) => {
+          dispatch(likeAlbumFail(data));
           if (alert) alert.error(data.message);
           console.log(data.error);
         });

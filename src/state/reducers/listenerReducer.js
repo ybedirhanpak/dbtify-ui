@@ -98,6 +98,28 @@ const listenerReducer = (state = initialState, action) => {
         message: action.payload.message,
         error: action.payload.error,
       };
+    case actionTypes.LIKE_SONG_SUCCESS:
+      return {
+        ...state,
+        message: action.payload.message,
+      };
+    case actionTypes.LIKE_SONG_FAIL:
+      return {
+        ...state,
+        message: action.payload.message,
+        error: action.payload.error,
+      };
+    case actionTypes.LIKE_ALBUM_SUCCESS:
+      return {
+        ...state,
+        message: action.payload.message,
+      };
+    case actionTypes.LIKE_ALBUM_FAIL:
+      return {
+        ...state,
+        message: action.payload.message,
+        error: action.payload.error,
+      };
     default:
       return state;
   }

@@ -3,7 +3,7 @@ import Listener from "../listener";
 
 const ListItem = (props) => {
   return (
-    <div class="col-md-3">
+    <div className="col-md-3">
       <Listener listener={props.element} />
     </div>
   );
