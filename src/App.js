@@ -8,9 +8,9 @@ import ListenerRoute from "./components/listener-route";
 import HomePage from "./pages/home/HomePage";
 import RegisterPage from "./pages/register/RegisterPage";
 import LoginPage from "./pages/login/LoginPage";
-import ArtistProfilePage from "./pages/artist/ArtistProfilePage";
+import ArtistHomePage from "./pages/artist/ArtistHomePage";
 import CreateAlbumSongPage from "./pages/artist/CreateAlbumSongPage";
-import ListenerPage from "./pages/listener/ListenerPage";
+import ListenerHomePage from "./pages/listener/ListenerHomePage";
 import LogoutPage from "./pages/logout/LogoutPage";
 import SearchPage from "./pages/song/SearchPage";
 import GenrePage from "./pages/song/GenrePage";
@@ -34,8 +34,8 @@ const App = () => {
           path="/artistProfile/create"
           component={CreateAlbumSongPage}
         />
-        <ArtistRoute path="/artistProfile" component={ArtistProfilePage} />
-        <ListenerRoute path="/listener" component={ListenerPage} />
+        <ArtistRoute path="/artistHome" component={ArtistHomePage} />
+        <ListenerRoute path="/listenerHome" component={ListenerHomePage} />
         <ListenerRoute path="/search/:key" component={SearchPage} />
         <ListenerRoute path="/search/" component={SearchPage} />
         <ListenerRoute path="/genre/:genreName" component={GenrePage} />

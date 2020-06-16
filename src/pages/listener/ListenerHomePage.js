@@ -4,7 +4,7 @@ import AllSongsListContainer from "../../containers/allSongsListContainer";
 import AllArtistsListContainer from "../../containers/allArtistsListContainer";
 import ListenerHeaderContainer from "../../containers/listenerHeaderContainer";
 
-const ListenerPage = () => {
+const ListenerHomePage = () => {
   return (
     <div className="page">
       <ListenerHeaderContainer />
@@ -15,4 +15,4 @@ const ListenerPage = () => {
   );
 };
 
-export default ListenerPage;
+export default ListenerHomePage;

@@ -6,11 +6,11 @@ import { Redirect, Link } from "react-router-dom";
 const HomePage = (props) => {
   const { userListener, userArtist } = props;
   if (userListener) {
-    return <Redirect to="/listener" />;
+    return <Redirect to="/listenerHome" />;
   }
 
   if (userArtist) {
-    return <Redirect to="/artistProfile" />;
+    return <Redirect to="/artistHome" />;
   }
 
   return (

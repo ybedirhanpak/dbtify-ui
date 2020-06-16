@@ -36,7 +36,7 @@ const Navbar = (props) => {
         <ul className="navbar-nav ml-auto">
           {userArtist && (
             <li className="nav-item">
-              <Link className="nav-link" to="/artistProfile">
+              <Link className="nav-link" to="/artistHome">
                 Artist
               </Link>
             </li>
@@ -44,7 +44,7 @@ const Navbar = (props) => {
           {userListener && (
             <>
               <li className="nav-item">
-                <Link className="nav-link" to="/listener">
+                <Link className="nav-link" to="/listenerHome">
                   Listener
                 </Link>
               </li>

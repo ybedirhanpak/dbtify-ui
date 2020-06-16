@@ -23,7 +23,7 @@ const ListenerLoginForm = (props) => {
   };
 
   if (userListener) {
-    return <Redirect to="/listener" />;
+    return <Redirect to="/listenerHome" />;
   }
   return (
     <UserForm
