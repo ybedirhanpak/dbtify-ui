@@ -51,12 +51,12 @@ const ListItem = (props) => {
     });
   };
 
-  const artistCanDelete = () => {
+  const artistCanUpdateDelete = () => {
     return userArtist && artistid === userArtist.id;
   };
 
   const onDeleteAlbum = () => {
-    if (artistCanDelete()) {
+    if (artistCanUpdateDelete()) {
       deleteAlbum(id, alert).then(() => {
         fetchArtist(userArtist.id);
       });
@@ -100,9 +100,16 @@ const ListItem = (props) => {
       >
         Artist: {artist}
       </Link>
-      {artistCanDelete() && (
+      {artistCanUpdateDelete() && (
         <>
           <br></br>
+          <Link
+            to={`/updateAlbum/${id}`}
+            className="btn btn-warning badge"
+            style={{ marginRight: 10 }}
+          >
+            Update
+          </Link>
           <button className="btn btn-danger badge" onClick={onDeleteAlbum}>
             Delete
           </button>

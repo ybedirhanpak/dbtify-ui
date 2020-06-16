@@ -11,6 +11,9 @@ const FETCH_ALBUM_FAIL = "FETCH_ALBUM_FAIL";
 const FETCH_ALL_SONGS_SUCCESS = "FETCH_ALL_SONGS_SUCCESS";
 const FETCH_ALL_SONGS_FAIL = "FETCH_ALL_SONGS_FAIL";
 
+const FETCH_SONG_SUCCESS = "FETCH_SONG_SUCCESS";
+const FETCH_SONG_FAIL = "FETCH_SONG_FAIL";
+
 const FETCH_ALL_LISTENERS_SUCCESS = "FETCH_ALL_LISTENERS_SUCCESS";
 const FETCH_ALL_LISTENERS_FAIL = "FETCH_ALL_LISTENERS_FAIL";
 
@@ -53,6 +56,8 @@ export const actionTypes = {
   LIKE_SONG_FAIL,
   LIKE_ALBUM_SUCCESS,
   LIKE_ALBUM_FAIL,
+  FETCH_SONG_SUCCESS,
+  FETCH_SONG_FAIL,
 };
 
 /* Action Creators */
@@ -94,6 +99,20 @@ const fetchAllSongsSuccess = (response) => {
 const fetchAllSongsFail = (response) => {
   return {
     type: FETCH_ALL_SONGS_FAIL,
+    payload: response,
+  };
+};
+
+const fetchSongSuccess = (response) => {
+  return {
+    type: FETCH_SONG_SUCCESS,
+    payload: response,
+  };
+};
+
+const fetchSongFail = (response) => {
+  return {
+    type: FETCH_SONG_FAIL,
     payload: response,
   };
 };
@@ -249,6 +268,25 @@ export const requestFetchAllSongs = (alert) => {
       } else {
         response.json().then((data) => {
           dispatch(fetchAllSongsFail(data));
+          if (alert) alert.error(data.message);
+          console.log(data.error);
+        });
+      }
+    });
+  };
+};
+
+export const requestFetchSong = (id, alert) => {
+  return async (dispatch) => {
+    return Get(`/song/get/${id}`).then((response) => {
+      if (Success(response)) {
+        response.json().then((data) => {
+          dispatch(fetchSongSuccess(data));
+          if (alert) alert.info(data.message);
+        });
+      } else {
+        response.json().then((data) => {
+          dispatch(fetchSongFail(data));
           if (alert) alert.error(data.message);
           console.log(data.error);
         });

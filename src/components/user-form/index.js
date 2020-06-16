@@ -14,8 +14,8 @@ const UserForm = ({ options }) => {
     selectList2,
   } = options;
 
-  const [input1, setInput1] = useState("");
-  const [input2, setInput2] = useState("");
+  const [input1, setInput1] = useState(value1 ? value1.init : "");
+  const [input2, setInput2] = useState(value2 ? value2.init : "");
   const [inputList1, setInputList1] = useState([]);
   const [inputList2, setInputList2] = useState([]);
 
@@ -36,6 +36,7 @@ const UserForm = ({ options }) => {
               className={"form-control " + borderClass}
               placeholder={"Enter " + value1.name}
               onChange={(event) => setInput1(event.target.value)}
+              value={input1}
             />
           </div>
         )}
@@ -48,6 +49,7 @@ const UserForm = ({ options }) => {
               className={"form-control " + borderClass}
               placeholder={"Enter " + value2.name}
               onChange={(event) => setInput2(event.target.value)}
+              value={input2}
             />
           </div>
         )}

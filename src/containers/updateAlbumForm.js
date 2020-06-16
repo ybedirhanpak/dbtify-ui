@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
-  requestCreateAlbum,
+  requestUpdateAlbum,
   requestFetchArtist,
 } from "../state/actions/artistActions";
+import { requestFetchAlbum } from "../state/actions/listenerActions";
 import { useAlert } from "react-alert";
 
 import UserForm from "../components/user-form";
 
-const CreateAlbumForm = (props) => {
-  const { userArtist } = props;
+const UpdateAlbumForm = (props) => {
+  const {
+    userArtist,
+    fetchAlbum,
+    updateAlbum,
+    fetchCurrentArtist,
+    currentAlbum,
+    albumid,
+  } = props;
   const alert = useAlert();
 
-  const onCreateAlbum = (title, genre) => {
+  useEffect(() => {
+    fetchAlbum(albumid);
+  }, [fetchAlbum, albumid]);
+
+  const onUpdateAlbum = (title, genre) => {
     if (!title || !genre) {
       alert.error("Please fill all credentials.");
       return;
@@ -21,10 +33,9 @@ const CreateAlbumForm = (props) => {
       const album = {
         title,
         genre,
-        artistID: userArtist.id,
       };
-      props.createAlbum(album, alert).then(() => {
-        props.fetchCurrentArtist(userArtist.id, alert);
+      updateAlbum(currentAlbum.id, album, alert).then(() => {
+        fetchCurrentArtist(userArtist.id);
       });
     } else {
       alert.error("Please log in as artist.");
@@ -40,14 +51,16 @@ const CreateAlbumForm = (props) => {
         value1: {
           header: "Title",
           name: "title",
+          init: currentAlbum ? currentAlbum.title : "",
         },
         value2: {
           header: "Genre",
           name: "genre",
+          init: currentAlbum ? currentAlbum.genre : "",
         },
         button: {
-          name: "Create",
-          onClick: onCreateAlbum,
+          name: "Update",
+          onClick: onUpdateAlbum,
         },
       }}
     />
@@ -57,12 +70,14 @@ const CreateAlbumForm = (props) => {
 const mapStateToProps = (state) => {
   return {
     userArtist: state.user.artist,
+    currentAlbum: state.listener.album,
   };
 };
 
 const mapDispatchToProps = {
-  createAlbum: requestCreateAlbum,
+  fetchAlbum: requestFetchAlbum,
+  updateAlbum: requestUpdateAlbum,
   fetchCurrentArtist: requestFetchArtist,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateAlbumForm);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateAlbumForm);

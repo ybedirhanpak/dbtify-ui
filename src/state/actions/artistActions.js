@@ -23,6 +23,12 @@ const DELETE_ALBUM_FAIL = "DELETE_ALBUM_FAIL";
 const DELETE_SONG_SUCCESS = "DELETE_SONG_SUCCESS";
 const DELETE_SONG_FAIL = "DELETE_SONG_FAIL";
 
+const UPDATE_ALBUM_SUCCESS = "UPDATE_ALBUM_SUCCESS";
+const UPDATE_ALBUM_FAIL = "UPDATE_ALBUM_FAIL";
+
+const UPDATE_SONG_SUCCESS = "UPDATE_SONG_SUCCESS";
+const UPDATE_SONG_FAIL = "UPDATE_SONG_FAIL";
+
 export const actionTypes = {
   CREATE_ALBUM_SUCCESS,
   CREATE_ALBUM_FAIL,
@@ -38,6 +44,10 @@ export const actionTypes = {
   DELETE_ALBUM_FAIL,
   DELETE_SONG_SUCCESS,
   DELETE_SONG_FAIL,
+  UPDATE_ALBUM_SUCCESS,
+  UPDATE_ALBUM_FAIL,
+  UPDATE_SONG_SUCCESS,
+  UPDATE_SONG_FAIL,
 };
 
 /* Action Creators */
@@ -136,6 +146,34 @@ const deleteSongSuccess = (response) => {
 const deleteSongFail = (response) => {
   return {
     type: DELETE_SONG_FAIL,
+    payload: response,
+  };
+};
+
+const updateAlbumSuccess = (response) => {
+  return {
+    type: UPDATE_ALBUM_SUCCESS,
+    payload: response,
+  };
+};
+
+const updateAlbumFail = (response) => {
+  return {
+    type: UPDATE_ALBUM_FAIL,
+    payload: response,
+  };
+};
+
+const updateSongSuccess = (response) => {
+  return {
+    type: UPDATE_SONG_SUCCESS,
+    payload: response,
+  };
+};
+
+const updateSongFail = (response) => {
+  return {
+    type: UPDATE_SONG_FAIL,
     payload: response,
   };
 };
@@ -253,6 +291,44 @@ export const requestDeleteSong = (id, alert) => {
       } else {
         response.json().then((data) => {
           dispatch(deleteSongFail(data));
+          alert.error(data.message);
+          console.log(data.error);
+        });
+      }
+    });
+  };
+};
+
+export const requestUpdateAlbum = (id, album, alert) => {
+  return async (dispatch) => {
+    return Post(`/album/update/${id}`, album).then((response) => {
+      if (Success(response)) {
+        response.json().then((data) => {
+          dispatch(updateAlbumSuccess(data));
+          alert.info(data.message);
+        });
+      } else {
+        response.json().then((data) => {
+          dispatch(updateAlbumFail(data));
+          alert.error(data.message);
+          console.log(data.error);
+        });
+      }
+    });
+  };
+};
+
+export const requestUpdateSong = (id, song, alert) => {
+  return async (dispatch) => {
+    return Post(`/song/update/${id}`, song).then((response) => {
+      if (Success(response)) {
+        response.json().then((data) => {
+          dispatch(createSongSuccess(data));
+          alert.info(data.message);
+        });
+      } else {
+        response.json().then((data) => {
+          dispatch(createSongFail(data));
           alert.error(data.message);
           console.log(data.error);
         });

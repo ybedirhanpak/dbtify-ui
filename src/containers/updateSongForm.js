@@ -9,7 +9,7 @@ import { useAlert } from "react-alert";
 
 import UserForm from "../components/user-form";
 
-const CreateSongForm = (props) => {
+const UpdateSongForm = (props) => {
   const {
     userArtist,
     allArtists,
@@ -94,4 +94,4 @@ const mapDispatchToProps = {
   fetchAllArtists: requestFetchAllArtists,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateSongForm);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateSongForm);
