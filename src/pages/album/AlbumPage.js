@@ -18,6 +18,7 @@ const AlbumPage = (props) => {
 
   return (
     <div className="page">
+      <h3>Album</h3>
       {currentAlbum && <Album album={currentAlbum} />}
       {currentAlbum && <SongList data={currentAlbum.songs} />}
     </div>

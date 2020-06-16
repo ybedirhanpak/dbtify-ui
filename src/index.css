@@ -53,11 +53,16 @@ code {
   border: 1px solid transparent;
 }
 
+.wrap {
+  white-space: normal !important;
+  overflow-wrap: normal !important;
+}
+
 /* Pages */
 
 .page {
   min-height: 400px;
-  padding: 20px;
+  padding: 20px 50px;
 }
 
 /* Login/Register */

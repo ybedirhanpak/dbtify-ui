@@ -19,6 +19,7 @@ const ListenerPage = (props) => {
 
   return (
     <div className="page">
+      <h3>Listener</h3>
       {currentListener && <Listener listener={currentListener} />}
       {currentListener && (
         <AlbumList title="Liked Albums" data={currentListener.likedAlbums} />

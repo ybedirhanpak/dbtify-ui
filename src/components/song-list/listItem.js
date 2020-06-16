@@ -83,7 +83,7 @@ const ListItem = (props) => {
       </button>
       <br></br>
       <Link
-        className="badge badge-light"
+        className="badge badge-light wrap"
         to={`/album/${albumid}`}
         style={{ fontSize: "1rem" }}
       >
@@ -91,7 +91,7 @@ const ListItem = (props) => {
       </Link>
       <br></br>
       <Link
-        className="badge badge-light"
+        className="badge badge-light wrap"
         to={`/genre/${genre}`}
         style={{ fontSize: "1rem" }}
       >
